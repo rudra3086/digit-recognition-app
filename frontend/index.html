@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwritten Digit Recognition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="terminal-header">
+                <div class="terminal-top-bar">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">neural_net_digits.exe</span>
+                </div>
+            </div>
+            <h1 class="tech-title">DIGIT RECOGNITION SYSTEM </h1>
+            <p class="subtitle code-text">$ neural_network --mode=prediction --model=cnn</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Canvas Section -->
+            <section class="canvas-section">
+                <div class="canvas-container">
+                    <div class="section-header">
+                        <span class="status-indicator active"></span>
+                        <h2>INPUT BUFFER - DRAWING CANVAS</h2>
+                        <span class="code-label">[280x280]</span>
+                    </div>
+                    <canvas id="drawingCanvas" width="280" height="280" class="tech-canvas"></canvas>
+                    <p class="canvas-instructions code-text">$ draw_digit 0-9 | accept [ENTER]</p>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <button id="predictBtn" class="btn btn-primary">
+                        <span class="btn-icon">▶</span>
+                        EXECUTE PREDICTION
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary">
+                        <span class="btn-icon">⊗</span>
+                        CLEAR BUFFER
+                    </button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <div class="results-container">
+                    <div class="section-header">
+                        <span class="status-indicator"></span>
+                        <h2>ANALYSIS OUTPUT</h2>
+                        <span class="code-label">[RESULTS]</span>
+                    </div>
+                    
+                    <!-- Loading Indicator -->
+                    <div id="loadingIndicator" class="loading-indicator hidden">
+                        <div class="tech-spinner"></div>
+                        <p class="code-text">$ processing neural_network.inference()...</p>
+                    </div>
+
+                    <!-- Results Display -->
+                    <div id="resultsDisplay" class="results-display hidden">
+                        <!-- Predicted Digit -->
+                        <div class="prediction-box">
+                            <div class="prediction-digit" id="predictionDigit">?</div>
+                            <p class="prediction-label code-text">RECOGNIZED: <span id="digitLabel"></span></p>
+                        </div>
+
+                        <!-- Confidence Score -->
+                        <div class="confidence-section">
+                            <p class="confidence-label code-text">CONFIDENCE_LEVEL [%]</p>
+                            <div class="confidence-bar tech-bar">
+                                <div class="confidence-fill" id="confidenceFill"></div>
+                            </div>
+                            <p class="confidence-percent code-text" id="confidencePercent">0%</p>
+                        </div>
+
+                        <!-- Probability Distribution -->
+                        <div class="probabilities-section">
+                            <p class="probabilities-label code-text">PROBABILITY_MATRIX [all_classes]</p>
+                            <div class="probabilities-grid" id="probabilitiesGrid">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="emptyState" class="empty-state">
+                        <p class="empty-state-icon">⟳</p>
+                        <p class="empty-state-text code-text">$ awaiting input | draw digit and execute prediction</p>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="errorMessage" class="error-message hidden">
+                        <span class="error-icon">⚠</span>
+                        <span id="errorText" class="code-text"></span>
+                    </div>
+
+                    <!-- Feedback Section -->
+                    <div id="feedbackSection" class="feedback-section hidden">
+                        <h3 class="code-text">ERROR_CORRECTION_MODE</h3>
+                        <p class="code-text">$ retraining model with corrected label...</p>
+                        <div class="feedback-controls">
+                            <label for="correctDigit" class="code-text">correct_digit [0-9]:</label>
+                            <select id="correctDigit" class="tech-select">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
+                            <button id="feedbackBtn" class="btn btn-tertiary">Save & Retrain</button>
+                        </div>
+                        <p id="feedbackMessage" class="feedback-message"></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by CNN Neural Network | TensorFlow/Keras</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
