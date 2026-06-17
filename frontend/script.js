@@ -1,7 +1,7 @@
 const CONFIG = {
     CANVAS_WIDTH: 280,
     CANVAS_HEIGHT: 280,
-    API_BASE_URL: 'http://localhost:5000',
+    API_BASE_URL: window.location.origin,
     PREDICT_ENDPOINT: '/predict',
     LINE_WIDTH: 15,
     LINE_COLOR: '#FFFFFF',
